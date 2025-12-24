@@ -69,120 +69,6 @@
             }
         }
 
-        /* Music Player */
-        .music-player {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 50px;
-            padding: 12px 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 126, 185, 0.2);
-            transition: var(--transition);
-            max-width: 350px;
-        }
-
-        .music-player:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .music-album-art {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            flex-shrink: 0;
-        }
-
-        .music-album-art img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .music-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-grow: 1;
-        }
-
-        .music-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
-        }
-
-        .music-info {
-            flex-grow: 1;
-            min-width: 120px;
-        }
-
-        .song-title {
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 0.95rem;
-            margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .song-artist {
-            font-size: 0.8rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .volume-slider {
-            width: 80px;
-            height: 5px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: rgba(255, 126, 185, 0.2);
-            border-radius: 10px;
-            outline: none;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
         /* Pages Container */
         .pages-container {
             width: 100%;
@@ -768,33 +654,6 @@
             transform: rotate(90deg);
         }
 
-        /* Lyrics Overlay */
-        .lyrics-overlay {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 30px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            font-size: 1.1rem;
-            color: var(--dark);
-            font-weight: 500;
-            z-index: 99;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 126, 185, 0.2);
-            text-align: center;
-            max-width: 600px;
-            min-width: 300px;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .lyrics-overlay.show {
-            opacity: 1;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .page {
@@ -851,24 +710,6 @@
             .memory-item:nth-child(even)::before {
                 left: -30px;
             }
-            
-            .music-player {
-                top: 15px;
-                right: 15px;
-                padding: 10px 20px;
-                max-width: 300px;
-            }
-            
-            .song-title {
-                font-size: 0.85rem;
-            }
-            
-            .lyrics-overlay {
-                bottom: 80px;
-                padding: 12px 20px;
-                font-size: 1rem;
-                min-width: 250px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -893,58 +734,12 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
-            .music-player {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 15px;
-                border-radius: 20px;
-                max-width: 250px;
-            }
-            
-            .music-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .lyrics-overlay {
-                bottom: 70px;
-                padding: 10px 15px;
-                font-size: 0.9rem;
-                min-width: 200px;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Heart Waterfall Background -->
     <div id="heart-waterfall"></div>
-
-    <!-- Music Player -->
-    <div class="music-player">
-        <div class="music-album-art">
-            <img src="https://i.scdn.co/image/ab67616d00001e02ba5db46f4b838ef6027e6f96" alt="Perfect Album Art">
-        </div>
-        <div class="music-info">
-            <div class="song-title">Perfect</div>
-            <div class="song-artist">Ed Sheeran</div>
-        </div>
-        <div class="music-controls">
-            <button class="music-btn" id="playPauseBtn">
-                <i class="fas fa-pause"></i>
-            </button>
-            <div class="volume-control">
-                <i class="fas fa-volume-up" style="color: var(--primary); font-size: 0.9rem;"></i>
-                <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider">
-            </div>
-        </div>
-    </div>
-
-    <!-- Lyrics Overlay -->
-    <div class="lyrics-overlay" id="lyricsOverlay">
-        "I found a love for me" - Ed Sheeran, Perfect
-    </div>
 
     <!-- Pages Container -->
     <div class="pages-container">
@@ -1020,7 +815,6 @@
                             <h3>My Beautiful Wife</h3>
                             <p>You are the light of my life, my best friend, and my soulmate. Your smile brightens my darkest days.</p>
                             <p>Watching you become a mother has been the most beautiful transformation. I fall in love with you more every single day.</p>
-                            <p>Just like Ed sings, "I found a love, for me. Darling, just dive right in and follow my lead."</p>
                         </div>
                     </div>
                     <div class="family-member">
@@ -1031,7 +825,6 @@
                             <h3>Our Precious Baby</h3>
                             <p>Our little miracle has brought more joy into our lives than we ever imagined possible.</p>
                             <p>You are the perfect combination of both of us, and watching you grow is the greatest adventure of our lives.</p>
-                            <p>"We are still kids, but we're so in love, fighting against all odds." - Our journey as parents has just begun.</p>
                         </div>
                     </div>
                 </div>
@@ -1096,8 +889,6 @@
         </div>
     </div>
 
-    <!-- Background Music: Perfect by Ed Sheeran -->
-    
     <script>
         // Sample images for the gallery
         const galleryImages = [
@@ -1133,10 +924,7 @@
                 url: "WhatsApp Image 2025-12-22 at 2.05.08 PM.jpeg",
                 title: "8t"
             },
-          
         ];
-
-      
 
         // DOM Elements
         const pages = document.querySelectorAll('.page');
@@ -1146,30 +934,19 @@
         const modal = document.querySelector('.image-modal');
         const modalImage = document.getElementById('modal-image');
         const closeModal = document.querySelector('.close-modal');
-        const backgroundMusic = document.getElementById('background-music');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
         const heartWaterfall = document.getElementById('heart-waterfall');
-        const lyricsOverlay = document.getElementById('lyricsOverlay');
 
         // Current page index
         let currentPage = 1;
         const totalPages = 5;
-        let lyricIndex = 0;
 
         // Initialize website
         function initWebsite() {
             // Initialize gallery
             initGallery();
             
-            // Initialize music
-            initBackgroundMusic();
-            
             // Create heart waterfall
             createHeartWaterfall();
-            
-            // Initialize lyrics display
-            initLyricsDisplay();
             
             // Set up event listeners
             setupEventListeners();
@@ -1199,9 +976,6 @@
                     modalImage.src = galleryImages[index].url;
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    // Pause music when viewing image
-                    backgroundMusic.pause();
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
                 });
             });
         }
@@ -1254,66 +1028,6 @@
                     createHeart();
                 }
             }, 300);
-        }
-
-        // Initialize background music with Ed Sheeran's Perfect
-        function initBackgroundMusic() {
-            // Set initial volume
-            backgroundMusic.volume = volumeSlider.value / 100;
-            
-            // Modern browsers require user interaction before autoplay
-            const playMusic = () => {
-                backgroundMusic.play().then(() => {
-                    console.log("Ed Sheeran's 'Perfect' is now playing");
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    lyricsOverlay.classList.add('show');
-                }).catch(error => {
-                    console.log("Autoplay was prevented:", error);
-                    // Show play button as paused
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    // Update music info
-                    const songTitle = document.querySelector('.song-title');
-                    songTitle.innerHTML = 'Perfect (Click play)';
-                });
-            };
-
-            // Try to play music on page load with a delay
-            setTimeout(playMusic, 1000);
-
-            // Also try after any user interaction
-            let userInteracted = false;
-            const tryPlayAfterInteraction = () => {
-                if (!userInteracted && backgroundMusic.paused) {
-                    backgroundMusic.play().then(() => {
-                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                        userInteracted = true;
-                        lyricsOverlay.classList.add('show');
-                    });
-                }
-            };
-            
-            document.addEventListener('click', tryPlayAfterInteraction);
-            document.addEventListener('touchstart', tryPlayAfterInteraction);
-            document.addEventListener('keydown', tryPlayAfterInteraction);
-        }
-
-        // Initialize lyrics display
-        function initLyricsDisplay() {
-            // Rotate through lyrics
-            setInterval(() => {
-                if (!backgroundMusic.paused) {
-                    lyricsOverlay.textContent = `"${perfectLyrics[lyricIndex]}" - Ed Sheeran, Perfect`;
-                    lyricsOverlay.classList.add('show');
-                    
-                    // Hide after a few seconds
-                    setTimeout(() => {
-                        lyricsOverlay.classList.remove('show');
-                    }, 4000);
-                    
-                    // Move to next lyric
-                    lyricIndex = (lyricIndex + 1) % perfectLyrics.length;
-                }
-            }, 8000);
         }
 
         // Initialize page animations
@@ -1378,50 +1092,21 @@
                 });
             });
 
-            // Music controls
-            playPauseBtn.addEventListener('click', function() {
-                if (backgroundMusic.paused) {
-                    backgroundMusic.play();
-                    this.innerHTML = '<i class="fas fa-pause"></i>';
-                    lyricsOverlay.classList.add('show');
-                } else {
-                    backgroundMusic.pause();
-                    this.innerHTML = '<i class="fas fa-play"></i>';
-                    lyricsOverlay.classList.remove('show');
-                }
-            });
-
-            // Volume control
-            volumeSlider.addEventListener('input', function() {
-                backgroundMusic.volume = this.value / 100;
-            });
-
             // Modal functionality
             closeModal.addEventListener('click', function() {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
-                // Resume music when closing modal
-                if (!backgroundMusic.paused) {
-                    backgroundMusic.play();
-                }
             });
 
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
-                    // Resume music when closing modal
-                    if (!backgroundMusic.paused) {
-                        backgroundMusic.play();
-                    }
                 }
             });
 
             // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                // Don't trigger if user is interacting with music player
-                if (e.target === volumeSlider) return;
-                
                 if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
                     if (currentPage < totalPages) {
                         goToPage(currentPage + 1);
@@ -1436,15 +1121,6 @@
                     if (modal.classList.contains('active')) {
                         modal.classList.remove('active');
                         document.body.style.overflow = 'auto';
-                    }
-                } else if (e.key === 'm' || e.key === 'M') {
-                    // M key to toggle music
-                    if (backgroundMusic.paused) {
-                        backgroundMusic.play();
-                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    } else {
-                        backgroundMusic.pause();
-                        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
                     }
                 }
             });
