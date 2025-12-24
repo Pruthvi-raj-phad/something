@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love for You & Our Baby</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff7eb9;
+            --secondary: #ff758c;
+            --accent: #ffcc00;
+            --light: #fff5f7;
+            --dark: #4a2c40;
+            --text: #333333;
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Heart Waterfall Background */
+        #heart-waterfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .waterfall-heart {
+            position: absolute;
+            color: rgba(255, 126, 185, 0.15);
+            font-size: 1.5rem;
+            animation: waterfall 15s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes waterfall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 12px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 126, 185, 0.2);
+            transition: var(--transition);
+            max-width: 350px;
+        }
+
+        .music-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-album-art {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .music-album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .music-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
+        }
+
+        .music-info {
+            flex-grow: 1;
+            min-width: 120px;
+        }
+
+        .song-title {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-artist {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 126, 185, 0.2);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Pages Container */
+        .pages-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .page-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: var(--secondary);
+            margin-bottom: 60px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Next Page Button */
+        .next-page-btn {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 15px 35px rgba(255, 126, 185, 0.4);
+            }
+            50% {
+                box-shadow: 0 15px 35px rgba(255, 126, 185, 0.8);
+            }
+            100% {
+                box-shadow: 0 15px 35px rgba(255, 126, 185, 0.4);
+            }
+        }
+
+        .next-page-btn:hover {
+            transform: scale(1.15) rotate(90deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .next-page-btn.hidden {
+            display: none;
+        }
+
+        /* Home Page */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            font-family: 'Dancing Script', cursive;
+            display: block;
+            font-size: 4rem;
+            margin-top: 10px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .heart-icon {
+            color: var(--primary);
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            z-index: -1;
+            border-radius: 30px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Gallery Page */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 250px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: popIn 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Love Notes Page */
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .note-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 126, 185, 0.1);
+            animation: slideUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .note-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 126, 185, 0.3);
+        }
+
+        .note-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .note-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .note-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .note-card p {
+            line-height: 1.6;
+        }
+
+        /* Family Page */
+        .family-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .family-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 126, 185, 0.1);
+            animation: fadeIn 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .family-member:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .family-image {
+            flex: 1;
+            min-height: 350px;
+            overflow: hidden;
+        }
+
+        .family-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .family-member:hover .family-image img {
+            transform: scale(1.05);
+        }
+
+        .family-info {
+            flex: 1;
+            padding: 50px;
+        }
+
+        .family-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .family-info p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Memories Page */
+        .memory-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .memory-timeline {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .memory-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transform: translateX(-50%);
+        }
+
+        .memory-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            padding: 25px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 126, 185, 0.1);
+            transition: var(--transition);
+            animation: bounceIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .memory-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 126, 185, 0.3);
+        }
+
+        .memory-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .memory-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .memory-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 126, 185, 0.5);
+        }
+
+        .memory-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .memory-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .memory-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .memory-item p {
+            line-height: 1.6;
+        }
+
+        /* Page Indicators */
+        .page-indicators {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 99;
+        }
+
+        .page-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba(255, 126, 185, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .page-indicator:hover {
+            transform: scale(1.3);
+            background-color: rgba(255, 126, 185, 0.6);
+        }
+
+        .page-indicator.active {
+            background-color: var(--primary);
+            transform: scale(1.3);
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 126, 185, 0.5);
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .image-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Lyrics Overlay */
+        .lyrics-overlay {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 500;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 126, 185, 0.2);
+            text-align: center;
+            max-width: 600px;
+            min-width: 300px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .lyrics-overlay.show {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page {
+                padding: 60px 20px;
+            }
+            
+            .page-title {
+                font-size: 3rem;
+            }
+            
+            .hero {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 span {
+                font-size: 3rem;
+            }
+            
+            .next-page-btn {
+                bottom: 30px;
+                right: 30px;
+                width: 65px;
+                height: 65px;
+                font-size: 1.5rem;
+            }
+            
+            .family-member, .family-member:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .family-info {
+                padding: 30px;
+            }
+            
+            .family-info h3 {
+                font-size: 2rem;
+            }
+            
+            .memory-timeline::before {
+                left: 20px;
+            }
+            
+            .memory-item {
+                width: calc(100% - 40px);
+                left: 40px !important;
+            }
+            
+            .memory-item:nth-child(odd)::before,
+            .memory-item:nth-child(even)::before {
+                left: -30px;
+            }
+            
+            .music-player {
+                top: 15px;
+                right: 15px;
+                padding: 10px 20px;
+                max-width: 300px;
+            }
+            
+            .song-title {
+                font-size: 0.85rem;
+            }
+            
+            .lyrics-overlay {
+                bottom: 80px;
+                padding: 12px 20px;
+                font-size: 1rem;
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 span {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .notes-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .music-player {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 15px;
+                border-radius: 20px;
+                max-width: 250px;
+            }
+            
+            .music-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .lyrics-overlay {
+                bottom: 70px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Heart Waterfall Background -->
+    <div id="heart-waterfall"></div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-album-art">
+            <img src="https://i.scdn.co/image/ab67616d00001e02ba5db46f4b838ef6027e6f96" alt="Perfect Album Art">
+        </div>
+        <div class="music-info">
+            <div class="song-title">Perfect</div>
+            <div class="song-artist">Ed Sheeran</div>
+        </div>
+        <div class="music-controls">
+            <button class="music-btn" id="playPauseBtn">
+                <i class="fas fa-pause"></i>
+            </button>
+            <div class="volume-control">
+                <i class="fas fa-volume-up" style="color: var(--primary); font-size: 0.9rem;"></i>
+                <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider">
+            </div>
+        </div>
+    </div>
+
+    <!-- Lyrics Overlay -->
+    <div class="lyrics-overlay" id="lyricsOverlay">
+        "I found a love for me" - Ed Sheeran, Perfect
+    </div>
+
+    <!-- Pages Container -->
+    <div class="pages-container">
+        <!-- Page 1: Home -->
+        <section id="page-1" class="page">
+            <div class="page-content">
+                <h2 class="page-title">My Beloved Wife</h2>
+                <div class="hero">
+                    <div class="hero-text">
+                        <h1>To the Love of My Life <span>& Our Precious Baby</span></h1>
+                        <p>Every day with you is a blessing I cherish. From the moment we met to the beautiful family we've created, my love for you grows stronger with each passing moment. <i class="fas fa-heart heart-icon"></i></p>
+                        <p>This website is a small token of my endless love for you and our amazing journey together. Here, I want to celebrate us, our love, and the beautiful family we've created.</p>
+                        <p>You are my sunshine, my rock, and my everything. Our baby is the greatest gift we could ever receive, and watching you become an incredible mother has made me love you even more.</p>
+                    </div>
+                    <div class="hero-image">
+                        <div class="image-frame">
+                            <img src="WhatsApp Image 2025-12-22 at 2.05.08 PM.jpeg" alt="Family Love" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Gallery -->
+        <section id="page-2" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Our Beautiful Moments</h2>
+                <div class="gallery-container">
+                    <!-- Gallery images will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 3: Love Notes -->
+        <section id="page-3" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Love Letters to You</h2>
+                <div class="notes-container">
+                    <div class="note-card">
+                        <div class="note-icon"><i class="fas fa-heart"></i></div>
+                        <h3>My Forever Love</h3>
+                        <p>From the moment I met you, I knew my life would never be the same. You are the missing piece I never knew I needed.</p>
+                    </div>
+                    <div class="note-card">
+                        <div class="note-icon"><i class="fas fa-baby"></i></div>
+                        <h3>Our Little Miracle</h3>
+                        <p>Seeing you with our baby fills my heart with a joy I never knew existed. You are an incredible mother.</p>
+                    </div>
+                    <div class="note-card">
+                        <div class="note-icon"><i class="fas fa-star"></i></div>
+                        <h3>You Shine Brighter</h3>
+                        <p>Every day you amaze me with your strength, kindness, and beauty. You handle motherhood with such grace.</p>
+                    </div>
+                    <div class="note-card">
+                        <div class="note-icon"><i class="fas fa-home"></i></div>
+                        <h3>Our Home</h3>
+                        <p>With you, anywhere feels like home. But the home we've built together is my favorite place in the world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 4: Family -->
+        <section id="page-4" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Our Beautiful Family</h2>
+                <div class="family-container">
+                    <div class="family-member">
+                        <div class="family-image">
+                            <img src="WhatsApp Image 2025-12-22 at 2.05.07 PM (1).jpeg" alt="My Beautiful Wife">
+                        </div>
+                        <div class="family-info">
+                            <h3>My Beautiful Wife</h3>
+                            <p>You are the light of my life, my best friend, and my soulmate. Your smile brightens my darkest days.</p>
+                            <p>Watching you become a mother has been the most beautiful transformation. I fall in love with you more every single day.</p>
+                            <p>Just like Ed sings, "I found a love, for me. Darling, just dive right in and follow my lead."</p>
+                        </div>
+                    </div>
+                    <div class="family-member">
+                        <div class="family-image">
+                            <img src="WhatsApp Image 2025-12-22 at 2.05.13 PM.jpeg" alt="Our Precious Baby">
+                        </div>
+                        <div class="family-info">
+                            <h3>Our Precious Baby</h3>
+                            <p>Our little miracle has brought more joy into our lives than we ever imagined possible.</p>
+                            <p>You are the perfect combination of both of us, and watching you grow is the greatest adventure of our lives.</p>
+                            <p>"We are still kids, but we're so in love, fighting against all odds." - Our journey as parents has just begun.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: Memories -->
+        <section id="page-5" class="page">
+            <div class="page-content">
+                <h2 class="page-title">Our Journey Together</h2>
+                <div class="memory-container">
+                    <div class="memory-timeline">
+                        <div class="memory-item">
+                            <h3>The Day We Met</h3>
+                            <p>I still remember the first time I saw you. My heart skipped a beat, and I knew my life was about to change forever.</p>
+                        </div>
+                        <div class="memory-item">
+                            <h3>Our First Date</h3>
+                            <p>That magical evening when we talked for hours and I realized I never wanted to stop talking to you.</p>
+                        </div>
+                        <div class="memory-item">
+                            <h3>The Proposal</h3>
+                            <p>Seeing the joy in your eyes when I asked you to spend forever with me was the happiest moment of my life.</p>
+                        </div>
+                        <div class="memory-item">
+                            <h3>Our Wedding Day</h3>
+                            <p>You looked absolutely breathtaking walking down the aisle. Promising my life to you was the easiest decision I've ever made.</p>
+                        </div>
+                        <div class="memory-item">
+                            <h3>Finding Out About Baby</h3>
+                            <p>The day we found out we were expecting was filled with tears of joy, hugs, and dreams of our future family.</p>
+                        </div>
+                        <div class="memory-item">
+                            <h3>Baby's Arrival</h3>
+                            <p>Holding our baby for the first time, with you by my side, was a moment of pure, unconditional love I'll never forget.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Next Page Button -->
+    <button class="next-page-btn" id="nextPageBtn">
+        <i class="fas fa-arrow-right"></i>
+    </button>
+
+    <!-- Page Indicators -->
+    <div class="page-indicators">
+        <div class="page-indicator active" data-page="1"></div>
+        <div class="page-indicator" data-page="2"></div>
+        <div class="page-indicator" data-page="3"></div>
+        <div class="page-indicator" data-page="4"></div>
+        <div class="page-indicator" data-page="5"></div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" src="" alt="Enlarged view">
+        </div>
+    </div>
+
+    <!-- Background Music: Perfect by Ed Sheeran -->
+    <audio id="background-music" loop>
+        <!-- Ed Sheeran's Perfect -->
+        <source src="https://audio.jukehost.co.uk/H8EXE1JdR3h8UNkMeb2U5TZfhK72Hpkk" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2021/10/25/audio_c3aed82f5f.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Sample images for the gallery
+        const galleryImages = [
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.06 PM.jpeg",
+                title: "1"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.07 PM (1).jpeg",
+                title: "2"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.08 PM (1).jpeg",
+                title: "3"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.11 PM (1).jpeg",
+                title: "4"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.13 PM.jpeg",
+                title: "5"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.12 PM (1).jpeg",
+                title: "6"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.11 PM (1).jpeg",
+                title: "7"
+            },
+            {
+                url: "WhatsApp Image 2025-12-22 at 2.05.08 PM.jpeg",
+                title: "8t"
+            },
+          
+        ];
+
+      
+
+        // DOM Elements
+        const pages = document.querySelectorAll('.page');
+        const nextPageBtn = document.getElementById('nextPageBtn');
+        const pageIndicators = document.querySelectorAll('.page-indicator');
+        const galleryContainer = document.querySelector('.gallery-container');
+        const modal = document.querySelector('.image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.close-modal');
+        const backgroundMusic = document.getElementById('background-music');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const heartWaterfall = document.getElementById('heart-waterfall');
+        const lyricsOverlay = document.getElementById('lyricsOverlay');
+
+        // Current page index
+        let currentPage = 1;
+        const totalPages = 5;
+        let lyricIndex = 0;
+
+        // Initialize website
+        function initWebsite() {
+            // Initialize gallery
+            initGallery();
+            
+            // Initialize music
+            initBackgroundMusic();
+            
+            // Create heart waterfall
+            createHeartWaterfall();
+            
+            // Initialize lyrics display
+            initLyricsDisplay();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Initialize animations for first page
+            initPageAnimations();
+        }
+
+        // Initialize gallery
+        function initGallery() {
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}" data-index="${index}">
+                `;
+                galleryContainer.appendChild(galleryItem);
+                
+                // Add staggered animation
+                galleryItem.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add click event to gallery items
+            document.querySelectorAll('.gallery-item img').forEach(img => {
+                img.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    modalImage.src = galleryImages[index].url;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    // Pause music when viewing image
+                    backgroundMusic.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+            });
+        }
+
+        // Create heart waterfall animation
+        function createHeartWaterfall() {
+            // Create hearts continuously
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'waterfall-heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // Random position across the screen width
+                heart.style.left = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 30 + 10;
+                heart.style.fontSize = `${size}px`;
+                
+                // Random color variation
+                const opacity = Math.random() * 0.3 + 0.1;
+                const hue = Math.random() * 20 + 330; // Pink variations
+                heart.style.color = `hsla(${hue}, 100%, 70%, ${opacity})`;
+                
+                // Random animation duration
+                const duration = Math.random() * 10 + 10;
+                heart.style.animationDuration = `${duration}s`;
+                
+                // Random animation delay
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                heartWaterfall.appendChild(heart);
+                
+                // Remove heart after animation completes
+                setTimeout(() => {
+                    if (heart.parentNode === heartWaterfall) {
+                        heartWaterfall.removeChild(heart);
+                    }
+                }, duration * 1000);
+            }
+            
+            // Create initial batch of hearts
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => createHeart(), i * 200);
+            }
+            
+            // Continue creating hearts
+            setInterval(() => {
+                if (document.hasFocus()) {
+                    createHeart();
+                }
+            }, 300);
+        }
+
+        // Initialize background music with Ed Sheeran's Perfect
+        function initBackgroundMusic() {
+            // Set initial volume
+            backgroundMusic.volume = volumeSlider.value / 100;
+            
+            // Modern browsers require user interaction before autoplay
+            const playMusic = () => {
+                backgroundMusic.play().then(() => {
+                    console.log("Ed Sheeran's 'Perfect' is now playing");
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    lyricsOverlay.classList.add('show');
+                }).catch(error => {
+                    console.log("Autoplay was prevented:", error);
+                    // Show play button as paused
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    // Update music info
+                    const songTitle = document.querySelector('.song-title');
+                    songTitle.innerHTML = 'Perfect (Click play)';
+                });
+            };
+
+            // Try to play music on page load with a delay
+            setTimeout(playMusic, 1000);
+
+            // Also try after any user interaction
+            let userInteracted = false;
+            const tryPlayAfterInteraction = () => {
+                if (!userInteracted && backgroundMusic.paused) {
+                    backgroundMusic.play().then(() => {
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        userInteracted = true;
+                        lyricsOverlay.classList.add('show');
+                    });
+                }
+            };
+            
+            document.addEventListener('click', tryPlayAfterInteraction);
+            document.addEventListener('touchstart', tryPlayAfterInteraction);
+            document.addEventListener('keydown', tryPlayAfterInteraction);
+        }
+
+        // Initialize lyrics display
+        function initLyricsDisplay() {
+            // Rotate through lyrics
+            setInterval(() => {
+                if (!backgroundMusic.paused) {
+                    lyricsOverlay.textContent = `"${perfectLyrics[lyricIndex]}" - Ed Sheeran, Perfect`;
+                    lyricsOverlay.classList.add('show');
+                    
+                    // Hide after a few seconds
+                    setTimeout(() => {
+                        lyricsOverlay.classList.remove('show');
+                    }, 4000);
+                    
+                    // Move to next lyric
+                    lyricIndex = (lyricIndex + 1) % perfectLyrics.length;
+                }
+            }, 8000);
+        }
+
+        // Initialize page animations
+        function initPageAnimations() {
+            // Animate elements on current page
+            animatePageElements(currentPage);
+        }
+
+        // Animate elements on page
+        function animatePageElements(pageNum) {
+            const page = document.getElementById(`page-${pageNum}`);
+            
+            if (pageNum === 1) {
+                // Home page animations
+                const heroElements = page.querySelectorAll('.hero-text, .hero-image');
+                heroElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.3}s`;
+                });
+            } else if (pageNum === 2) {
+                // Gallery animations
+                const galleryItems = page.querySelectorAll('.gallery-item');
+                galleryItems.forEach((item, index) => {
+                    item.style.animationDelay = `${index * 0.1}s`;
+                });
+            } else if (pageNum === 3) {
+                // Love notes animations
+                const noteCards = page.querySelectorAll('.note-card');
+                noteCards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.2}s`;
+                });
+            } else if (pageNum === 4) {
+                // Family animations
+                const familyMembers = page.querySelectorAll('.family-member');
+                familyMembers.forEach((member, index) => {
+                    member.style.animationDelay = `${index * 0.3}s`;
+                });
+            } else if (pageNum === 5) {
+                // Memories animations
+                const memoryItems = page.querySelectorAll('.memory-item');
+                memoryItems.forEach((item, index) => {
+                    item.style.animationDelay = `${index * 0.2}s`;
+                });
+            }
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Next page button
+            nextPageBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    goToPage(currentPage + 1);
+                } else {
+                    goToPage(1); // Loop back to first page
+                }
+            });
+
+            // Page indicators
+            pageIndicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    const pageNum = parseInt(this.getAttribute('data-page'));
+                    goToPage(pageNum);
+                });
+            });
+
+            // Music controls
+            playPauseBtn.addEventListener('click', function() {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    this.innerHTML = '<i class="fas fa-pause"></i>';
+                    lyricsOverlay.classList.add('show');
+                } else {
+                    backgroundMusic.pause();
+                    this.innerHTML = '<i class="fas fa-play"></i>';
+                    lyricsOverlay.classList.remove('show');
+                }
+            });
+
+            // Volume control
+            volumeSlider.addEventListener('input', function() {
+                backgroundMusic.volume = this.value / 100;
+            });
+
+            // Modal functionality
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                // Resume music when closing modal
+                if (!backgroundMusic.paused) {
+                    backgroundMusic.play();
+                }
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    // Resume music when closing modal
+                    if (!backgroundMusic.paused) {
+                        backgroundMusic.play();
+                    }
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                // Don't trigger if user is interacting with music player
+                if (e.target === volumeSlider) return;
+                
+                if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                    if (currentPage < totalPages) {
+                        goToPage(currentPage + 1);
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    if (currentPage > 1) {
+                        goToPage(currentPage - 1);
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                } else if (e.key === 'm' || e.key === 'M') {
+                    // M key to toggle music
+                    if (backgroundMusic.paused) {
+                        backgroundMusic.play();
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    } else {
+                        backgroundMusic.pause();
+                        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // Navigate to specific page
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPages) return;
+            
+            // Update current page index
+            currentPage = pageNum;
+            
+            // Scroll to page
+            const targetPage = document.getElementById(`page-${pageNum}`);
+            window.scrollTo({
+                top: targetPage.offsetTop,
+                behavior: 'smooth'
+            });
+            
+            // Update page indicators
+            updatePageIndicators();
+            
+            // Update next button text on last page
+            if (pageNum === totalPages) {
+                nextPageBtn.innerHTML = '<i class="fas fa-redo"></i>';
+            } else {
+                nextPageBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
+            }
+            
+            // Animate elements on new page
+            setTimeout(() => {
+                animatePageElements(pageNum);
+            }, 500);
+            
+            // Create transition hearts
+            createTransitionHearts();
+        }
+
+        // Create heart animation during page transition
+        function createTransitionHearts() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.position = 'fixed';
+                    heart.style.color = 'var(--primary)';
+                    heart.style.fontSize = '2rem';
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.top = `${Math.random() * 100}%`;
+                    heart.style.zIndex = '9999';
+                    heart.style.opacity = '0.8';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = 'float 2s ease-in-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 2000);
+                }, i * 150);
+            }
+        }
+
+        // Update page indicators
+        function updatePageIndicators() {
+            pageIndicators.forEach((indicator, index) => {
+                if (index + 1 === currentPage) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize the website when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initWebsite);
+        
+        // Also initialize when window loads
+        window.addEventListener('load', function() {
+            // Additional initialization if needed
+        });
+    </script>
+</body>
+</html>
